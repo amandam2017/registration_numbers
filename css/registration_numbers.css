@@ -2,6 +2,10 @@ body{
     background-color: slategrey;
 }
 
+.inner_container{
+    margin: 50px 0;
+}
+
 input{
     border: 3px solid #f6f;
     border-radius: 15px;
