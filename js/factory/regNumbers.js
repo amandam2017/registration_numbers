@@ -1,24 +1,33 @@
-function regNum(){
+function regNum() {
     var regNumberList = [];
 
-    function setReg(plateNumber){ 
-        regNumberList.push(plateNumber)    
+    function setReg(plateNumber){
+        if (!regNumberList.includes(plateNumber) && plateNumber.match(pattern)) {
+            regNumberList.push(plateNumber)
+        }
+        return regNumberList  
     }
 
     function getReg(){
         return regNumberList;
     }
 
-    function eachRegNum(regNumber){
-        var enteredRegNum = [];
-        if(regNumber != ''){
-            enteredRegNum += regNumber
-        }
-        return enteredRegNum
+    var pattern = /[CAKL]\s\d{3,6}/g;
+    var regNumberNotMatching = 'enter registration number correctly'
 
+    function eachRegNum(plateNumber){
+        var enteredRegNum;
+        if (pattern.test(plateNumber)){
+            if (plateNumber != '') {
+                enteredRegNum += plateNumber
+            }
+        }
+        else{
+            return regNumberNotMatching
+        }
     }
 
-    return{
+    return {
         setReg,
         getReg,
         eachRegNum
