@@ -14,35 +14,36 @@
         <div class="inner_container">
             <div class="row">
                 <div class="nine columns box">
-                    <h1>Registration Number:</h1>
+                    <h3>Registration Number:</h3>
 
                     <span class="noMatchReg"></span>
+                    <span class="unMatchPattern"></span>
+
     
                 <form id="registrationNumberForm">
                     <span class="errorMessageOutput"></span>
-                    <input class="enteredReg" name="enteredReg" type="text" placeholder="CA 24585" value="" required/>
+                    <input class="enteredReg" name="enteredReg" type="text" placeholder="CA 24585" value="" minlength="6" maxlength="8" required/>
                     <button class="button" name="add" type="button">ADD</button>
                     <ul class="printRegNumber"></ul>
-                    <!-- <button class="buttonReset" name="removeStorage" type="button">RESET</button> -->
+                    <button class="buttonReset" name="removeStorage" type="button">RESET</button>
 
                    <h3>Filter by a town</h3>
-                   <div class="row town">
+                   <div class="row townName">
                    <label>Cape Town</label>
-                   <input type="radio" name="town" class="selectTown" value="CA">
+                   <input type="radio" name="town" class="selectTown" value="Cape Town">
                    </div> 
 
-                   <div class="row town">
+                   <div class="row townName">
                     <label>Malmesbury</label>
-                    <input type="radio" name="town" class="selectTown" value="CK">
+                    <input type="radio" name="town" class="selectTown" value="Malmesbury">
                    </div>
-                   <div class="row town">
+                   <div class="row townName">
                     <label>Stellenbosch</label>
-                    <input type="radio" name="town" class="selectTown" value="CL">
+                    <input type="radio" name="town" class="selectTown" value="Stellenbosch">
                    </div>
 
-                    <button class="buttonShow" name="show" type="button">SHOW</button>
-
-
+                    <button class="buttonShow" name="show" type="button" onclick="viewSelectedTown()">SHOW</button>
+                    <span id="selectedTownReg"></span>
                 </form>
                     
                 </div>

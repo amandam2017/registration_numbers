@@ -12,14 +12,23 @@ function regNum() {
         return regNumberList;
     }
 
-    var pattern = /[CAKL]\s\d{3,6}/g;
+    var pattern = /[CAKL]{2}\s\d{3}/
     var regNumberNotMatching = 'enter registration number correctly'
 
-    function eachRegNum(plateNumber){
+    function eachRegNum(plateNumber,selectedTown){
+        console.log(plateNumber)
+        console.log(selectedTown)
+
         var enteredRegNum;
         if (pattern.test(plateNumber)){
-            if (plateNumber != '') {
-                enteredRegNum += plateNumber
+            if (selectedTown === 'Cape Town' && plateNumber.match(pattern)) {
+                enteredRegNum += plateNumber.startsWith('CA')
+            }
+            if (selectedTown === 'Malmesbury' && plateNumber.match(pattern)) {
+                enteredRegNum += plateNumber.startsWith('CK')
+            }
+            if (selectedTown === 'Stellenbosch' && plateNumber.match(pattern)) {
+                enteredRegNum += plateNumber.startsWith('CL')
             }
         }
         else{
@@ -27,10 +36,21 @@ function regNum() {
         }
     }
 
+    function errors(plateNumber){
+        var emptyFieldError = 'please enter plate number'
+        var incorrectPatternError = 'please enter a correct registration number'
+        if(!plateNumber){
+            return emptyFieldError
+        } else if(plateNumber != plateNumber.match(pattern)){
+            return incorrectPatternError
+        }
+    }
+
     return {
         setReg,
         getReg,
-        eachRegNum
+        eachRegNum,
+        errors
     }
 }
 
