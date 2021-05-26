@@ -31,7 +31,7 @@ function displayRegNum(){
         noMatchRegElem.innerHTML = ""
     }else if(!carReg){
         noMatchRegElem.innerHTML = registrations.errors(carReg);
-        regList.innerHTML = ""
+        return regList.innerHTML = ""
     }
     else{
         unMatchPatternElem.innerHTML =  registrations.errors(carReg);
