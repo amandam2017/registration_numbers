@@ -7,6 +7,9 @@ h3{
     font-weight: 600;
     text-align: center;
 }
+.enteredReg{
+    width: 100%;
+}
 
 .inner_container{
     margin: 50px 0;
@@ -46,7 +49,7 @@ span{
 
   /******style the form*****/
   #registrationNumberForm{
-      width: 90%;
       margin: auto;
       border: 5px solid;
+      padding: 15px;
   }
