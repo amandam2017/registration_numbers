@@ -4,6 +4,7 @@ const printRegNumElem = document.querySelector('.printRegNumber');
 const noMatchRegElem = document.querySelector('.noMatchReg');
 const unMatchPatternElem = document.querySelector('.unMatchPattern');
 const buttonShowElem = document.querySelector('.buttonShow');
+const printEachTownElem = document.querySelector('.printEachTown');
 
 // const errorMessageOutputElem = document.querySelector('.errorMessageOutput');
 // const buttonResetElem = document.querySelector('.buttonReset');
@@ -73,16 +74,21 @@ function viewSelectedTown() {
     var checkedButton = document.querySelector("input[name ='town']:checked");
     var selectedTwn = checkedButton.value
 
+    var eachTown = document.createElement('Li');
+
     for (var i = 0; i < townsOnStorage.length; i++) {
         if(townsOnStorage[i].startsWith(selectedTwn)){
            console.log(townsOnStorage[i])
-           return townsOnStorage[i].value;
-        }else{   
-            return '' 
-        console.log('Registrations of a selected town: ' + townsOnStorage[i]);
-            document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
+        printEachTownElem.appendChild(townsOnStorage[i]);
+
+        //    document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
         }
+        // else{   
+        //     return document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
+        // // console.log('Registrations of a selected town: ' + townsOnStorage[i]);
+        // }
     }
+
 }
     
 
