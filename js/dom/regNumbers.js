@@ -79,9 +79,9 @@ function viewSelectedTown() {
     for (var i = 0; i < townsOnStorage.length; i++) {
         if(townsOnStorage[i].startsWith(selectedTwn)){
            console.log(townsOnStorage[i])
-        printEachTownElem.appendChild(townsOnStorage[i]);
+        // printEachTownElem.appendChild(townsOnStorage[i]);
 
-        //    document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
+        printEachTownElem.appendChild.innerHTML = townsOnStorage[i] + ', '
         }
         // else{   
         //     return document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
@@ -91,7 +91,7 @@ function viewSelectedTown() {
 
 }
     
-
+// viewSelectedTown(townsOnStorage)
 
 
 addButtonElem.addEventListener('click', displayRegNum);
