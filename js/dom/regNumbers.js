@@ -82,10 +82,10 @@ function viewSelectedTown() {
         printEachTownElem.appendChild(townsOnStorage[i]);
 
         }
-        // else{   
-        //     return document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
-        // // console.log('Registrations of a selected town: ' + townsOnStorage[i]);
-        // }
+        else{   
+            return document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
+        // console.log('Registrations of a selected town: ' + townsOnStorage[i]);
+        }
     }
 
 }
