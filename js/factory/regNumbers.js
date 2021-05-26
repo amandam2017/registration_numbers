@@ -19,7 +19,7 @@ function regNum() {
         return regNumberList;
     }
 
-    var pattern = /[CA|CK|CL]{2}\s\d{6}$/
+    var pattern = /[CA|CK|CL]{2}\s\d{5}$/
 
     var regNumberNotMatching = 'enter registration number correctly'
 
