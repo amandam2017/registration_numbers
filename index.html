@@ -18,11 +18,10 @@
 
                     <span class="noMatchReg"></span>
                     <span class="unMatchPattern"></span>
-
     
-                <form id="registrationNumberForm">
+                <form id="registrationNumberForm" class="clearfix">
                     <span class="errorMessageOutput"></span>
-                    <input class="enteredReg" name="enteredReg" type="text" placeholder="CA 24585" value="" minlength="6" maxlength="8" required/>
+                    <input class="enteredReg" name="enteredReg" type="text" placeholder="CA 24585" value="" required/>
                     <button class="button" name="add" type="button">ADD</button>
                     <ul class="printRegNumber"></ul>
                     <button class="buttonReset" name="removeStorage" type="button">RESET</button>
@@ -30,24 +29,22 @@
                    <h3>Filter by a town</h3>
                    <div class="row townName">
                    <label>Cape Town</label>
-                   <input type="radio" name="town" class="selectTown" value="Cape Town">
+                   <input type="radio" name="town" class="selectTown" value="CA">
                    </div> 
-
                    <div class="row townName">
                     <label>Malmesbury</label>
-                    <input type="radio" name="town" class="selectTown" value="Malmesbury">
+                    <input type="radio" name="town" class="selectTown" value="CK">
                    </div>
                    <div class="row townName">
                     <label>Stellenbosch</label>
-                    <input type="radio" name="town" class="selectTown" value="Stellenbosch">
+                    <input type="radio" name="town" class="selectTown" value="CL">
                    </div>
-
+                   <div class="row">
                     <button class="buttonShow" name="show" type="button" onclick="viewSelectedTown()">SHOW</button>
                     <span id="selectedTownReg"></span>
-                </form>
-                    
+                   </div>
+                </form>        
                 </div>
-    
             </div>
         </div>
 

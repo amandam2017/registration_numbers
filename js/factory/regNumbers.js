@@ -1,40 +1,48 @@
 function regNum() {
     var regNumberList = [];
+    var localReg = ''
 
     function setReg(plateNumber){
+        var incorrectPatternError = 'please enter a correct registration number'
+
         if (!regNumberList.includes(plateNumber) && plateNumber.match(pattern)) {
             regNumberList.push(plateNumber)
+            return localReg = plateNumber
         }
-        return regNumberList  
+        else{
+            return incorrectPatternError
+        }
+        // return regNumberList  
     }
 
     function getReg(){
         return regNumberList;
     }
 
-    var pattern = /[CAKL]{2}\s\d{3}/
+    var pattern = /[CA|CK|CL]{2}\s\d{6}$/
+
     var regNumberNotMatching = 'enter registration number correctly'
 
-    function eachRegNum(plateNumber,selectedTown){
-        console.log(plateNumber)
-        console.log(selectedTown)
+    // function eachRegNum(plateNumber,selectedTown){
+    //     // console.log(plateNumber)
+    //     // console.log(selectedTown)
 
-        var enteredRegNum;
-        if (pattern.test(plateNumber)){
-            if (selectedTown === 'Cape Town' && plateNumber.match(pattern)) {
-                enteredRegNum += plateNumber.startsWith('CA')
-            }
-            if (selectedTown === 'Malmesbury' && plateNumber.match(pattern)) {
-                enteredRegNum += plateNumber.startsWith('CK')
-            }
-            if (selectedTown === 'Stellenbosch' && plateNumber.match(pattern)) {
-                enteredRegNum += plateNumber.startsWith('CL')
-            }
-        }
-        else{
-            return regNumberNotMatching
-        }
-    }
+    //     var enteredRegNum = [];
+    //     if (pattern.test(plateNumber)){
+    //         if (selectedTown === 'Cape Town' && plateNumber.match(pattern)) {
+    //             enteredRegNum = plateNumber.startsWith('CA')
+    //         }
+    //         if (selectedTown === 'Malmesbury' && plateNumber.match(pattern)) {
+    //             enteredRegNum = plateNumber.startsWith('CK')
+    //         }
+    //         if (selectedTown === 'Stellenbosch' && plateNumber.match(pattern)) {
+    //             enteredRegNum = plateNumber.startsWith('CL')
+    //         }
+    //     }
+    //     else{
+    //         return regNumberNotMatching
+    //     }
+    // }
 
     function errors(plateNumber){
         var emptyFieldError = 'please enter plate number'
@@ -49,7 +57,7 @@ function regNum() {
     return {
         setReg,
         getReg,
-        eachRegNum,
+        // eachRegNum,
         errors
     }
 }

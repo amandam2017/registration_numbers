@@ -47,7 +47,13 @@ function displayRegNum(){
 
     let key = registrations.getReg()
     localStorage.setItem('regNumbersList', JSON.stringify(key))
-    console.log(key);
+    // console.log(key);
+
+    setTimeout(function(){
+        noMatchRegElem.innerHTML = ""
+        unMatchPatternElem.innerHTML = ""
+
+    }, 5000)
 }
 
 // keep local storage on page reload
@@ -62,9 +68,20 @@ function viewSelectedTown() {
     var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
     document.getElementById("selectedTownReg").innerHTML = "";
 
+    // var checkedButton = document.querySelector("input[name ='town']:unchecked");
+    
+    var checkedButton = document.querySelector("input[name ='town']:checked");
+    var selectedTwn = checkedButton.value
+
     for (var i = 0; i < townsOnStorage.length; i++) {
+        if(townsOnStorage[i].startsWith(selectedTwn)){
+           console.log(townsOnStorage[i])
+           return townsOnStorage[i].value;
+        }else{   
+            return '' 
         console.log('Registrations of a selected town: ' + townsOnStorage[i]);
-        document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
+            document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
+        }
     }
 }
     

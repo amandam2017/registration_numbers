@@ -8,7 +8,7 @@ body{
 }
 
 ul li{
-    /* display: inline-block; */
+    display: inline-block;
     border: 2px solid #000;
     /* background-color: #fff; */
     /* font-weight: 600; */
@@ -22,3 +22,19 @@ ul li{
     padding: 15px;
     display: flex;
 }
+
+.townName{
+    float: left;
+    padding: 10px;
+    display: flex;
+}
+
+span{
+    color: red;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
