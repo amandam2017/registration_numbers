@@ -31,7 +31,7 @@ function displayRegNum(){
         noMatchRegElem.innerHTML = ""
     }else if(!carReg){
         noMatchRegElem.innerHTML = registrations.errors(carReg);
-        return regList.innerHTML = ""
+         regList.innerHTML = ""
     }
     else{
         unMatchPatternElem.innerHTML =  registrations.errors(carReg);
@@ -54,7 +54,7 @@ function displayRegNum(){
         noMatchRegElem.innerHTML = ""
         unMatchPatternElem.innerHTML = ""
 
-    }, 5000)
+    }, 4000)
 }
 
 // keep local storage on page reload
