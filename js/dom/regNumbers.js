@@ -10,7 +10,7 @@ const printEachTownElem = document.querySelector('.printEachTown');
 // const buttonResetElem = document.querySelector('.buttonReset');
 
 
-var storageList = []
+var storageList;
 if(localStorage['regNumbersList']){
     storageList = JSON.parse(localStorage.getItem('regNumbersList'))
 }
@@ -22,12 +22,15 @@ function displayRegNum(){
 
     // create a new list element regList
     var regList = document.createElement('Li');
+    // console.log(regList)
 
     //and give it some content
     var carReg = enteredRegElemt.value
     // regList.innerHTML = enteredRegElemt.value;
     if(carReg){
         regList.innerHTML = registrations.setReg(carReg);
+        // add the text node to the newly created list element
+     printRegNumElem.appendChild(regList);
         noMatchRegElem.innerHTML = ""
     }else if(!carReg){
         noMatchRegElem.innerHTML = registrations.errors(carReg);
@@ -35,27 +38,26 @@ function displayRegNum(){
     }
     else{
         unMatchPatternElem.innerHTML =  registrations.errors(carReg);
+        regList.innerHTML = ""
+
     } 
 
-    // add the text node to the newly created list element
-    printRegNumElem.appendChild(regList);
-
-    // add the created printRegNumElem and its content into the DOM
-    // const printRegNumElem = document.getElementById("div1");
-
-
-    enteredRegElemt.value = ''
+    // enteredRegElemt.value = ''
 
     let key = registrations.getReg()
     localStorage.setItem('regNumbersList', JSON.stringify(key))
     // console.log(key);
+    clearInput()
+
 
     setTimeout(function(){
         noMatchRegElem.innerHTML = ""
         unMatchPatternElem.innerHTML = ""
 
     }, 4000)
+
 }
+
 
 // keep local storage on page reload
 
@@ -65,6 +67,8 @@ function resetFun(){
 }
 
 // view selected towns onlocal storage
+ var selectedTwn = '' 
+
 function viewSelectedTown() {
     var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
     document.getElementById("selectedTownReg").innerHTML = "";
@@ -72,25 +76,50 @@ function viewSelectedTown() {
     // var checkedButton = document.querySelector("input[name ='town']:unchecked");
     
     var checkedButton = document.querySelector("input[name ='town']:checked");
-    var selectedTwn = checkedButton.value
-
-    var eachTown = document.createElement('Li');
+    if(checkedButton){
+        selectedTwn = checkedButton.value
+    }
+    var selectedTwnList = [];
 
     for (var i = 0; i < townsOnStorage.length; i++) {
-        if(townsOnStorage[i].startsWith(selectedTwn)){
-           console.log(townsOnStorage[i])
-        printEachTownElem.appendChild(townsOnStorage[i]);
+        var twnList = townsOnStorage[i]
+        if(twnList.startsWith(selectedTwn)){
+           selectedTwnList.push(twnList);
+            // return selectedTwnList;
+        }
 
-        }
-        else{   
-            return document.getElementById("selectedTownReg").innerHTML += townsOnStorage[i] + ', '
-        // console.log('Registrations of a selected town: ' + townsOnStorage[i]);
-        }
     }
 
+ for (let i = 0; i < selectedTwnList.length; i++) {
+     const element = selectedTwnList[i];
+    //  console.log(selectedTwnList[i])
+   var  regLi = document.createElement('Li');
+   regLi.innerHTML = element;
+
+     
+    //  const newContent = document.createTextNode(element);
+     printEachTownElem.appendChild(regLi);
+
+ }
+
+
+     // and give it some content
+
+    // add the text node to the newly created div
+    // console.log(newContent)
+
+
+    // printEachTownElem.appendChild(newContent);
+
+
+    clearInput()
+
 }
-    
-// viewSelectedTown(townsOnStorage)
+
+function clearInput(){
+    document.getElementById('registrationNumberForm').reset();
+}
+
 
 
 addButtonElem.addEventListener('click', displayRegNum);

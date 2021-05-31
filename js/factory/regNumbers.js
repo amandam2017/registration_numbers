@@ -1,17 +1,21 @@
-function regNum() {
-    var regNumberList = [];
+function regNum(storageReigstrations) {
+    var regNumberList = storageReigstrations || [];
     var localReg = ''
 
     function setReg(plateNumber){
-        var incorrectPatternError = 'please enter a correct registration number'
+        // var incorrectPatternError = 'Please enter a registration number correctly'
+        // var alreadyExixtRegError = 'Registration number already exist'
 
         if (!regNumberList.includes(plateNumber) && plateNumber.match(pattern)) {
             regNumberList.push(plateNumber)
             return localReg = plateNumber
         }
-        else{
-            return incorrectPatternError
-        }
+        // else if(regNumberList.includes(plateNumber)){
+        //     return alreadyExixtRegError
+        // }
+        // else{
+        //     return incorrectPatternError
+        // }
         // return regNumberList  
     }
 
@@ -19,9 +23,11 @@ function regNum() {
         return regNumberList;
     }
 
-    var pattern = /[CA|CK|CL]{2}\s\d{5}$/
+    var pattern = /^[CA|CK|CL]{2}\s\d{5} || [CA|CK|CL]{2}\s\d{3}\s\d{3}$/
 
-    var regNumberNotMatching = 'enter registration number correctly'
+    
+
+
 
     // function eachRegNum(plateNumber,selectedTown){
     //     // console.log(plateNumber)
@@ -44,14 +50,22 @@ function regNum() {
     //     }
     // }
 
-    function errors(plateNumber){
-        var emptyFieldError = 'please enter plate number'
-        var incorrectPatternError = 'please enter a correct registration number'
+    function errors(plateNumber, reg){
+        console.log(plateNumber)
+        console.log(reg)
+
+        var emptyFieldError = '*Please enter plate number*'
+        var alreadyExixtRegError = '*Registration number already exist*'
+        var incorrectPatternError = '*Please enter a registration number correctly*'
+
+        // var incorrectPatternError = 'please enter a correct registration number'
         if(!plateNumber){
             return emptyFieldError
-        } else if(plateNumber != plateNumber.match(pattern)){
-            return incorrectPatternError
+        } 
+        else if(regNumberList.includes(plateNumber)){
+            return alreadyExixtRegError
         }
+        
     }
 
     return {
