@@ -50,13 +50,16 @@ function regNum(storageReigstrations) {
 
         if(!plateNumber){
             return emptyFieldError;
-        } 
-        else if(regNumberList.includes(plateNumber)){
-            return alreadyExixtRegError;
         }
-        else{
-            return incorrectPatternError
-        }
+        if(plateNumber.match(pattern)){
+            if(regNumberList.includes(plateNumber)){
+                return alreadyExixtRegError;
+            }
+            if(!plateNumber.match(pattern)){
+                return incorrectPatternError        
+            }
+        }    
+  
     }
 
     return {
