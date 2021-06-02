@@ -32,6 +32,8 @@ function displayRegNum(){
         // add the text node to the newly created list element
      printRegNumElem.appendChild(regList);
         noMatchRegElem.innerHTML = ""
+        printEachTownElem.innerHTML = "";
+
     }else if(!carReg){
         noMatchRegElem.innerHTML = registrations.errors(carReg);
          regList.innerHTML = ""
