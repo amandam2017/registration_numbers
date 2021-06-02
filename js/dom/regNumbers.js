@@ -5,6 +5,7 @@ const noMatchRegElem = document.querySelector('.noMatchReg');
 const unMatchPatternElem = document.querySelector('.unMatchPattern');
 const buttonShowElem = document.querySelector('.buttonShow');
 const printEachTownElem = document.querySelector('.printEachTown');
+const successfulMessageElem = document.querySelector('.successfulMessage');
 
 // const errorMessageOutputElem = document.querySelector('.errorMessageOutput');
 // const buttonResetElem = document.querySelector('.buttonReset');
@@ -30,7 +31,8 @@ function displayRegNum(){
     if(carReg){
         regList.innerHTML = registrations.setReg(carReg);
         // add the text node to the newly created list element
-     printRegNumElem.appendChild(regList);
+        printRegNumElem.appendChild(regList);
+        successfulMessageElem.innerHTML = 'seccessfully added a registration'
         noMatchRegElem.innerHTML = ""
         printEachTownElem.innerHTML = "";
 
@@ -41,7 +43,6 @@ function displayRegNum(){
     else{
         unMatchPatternElem.innerHTML =  registrations.errors(carReg);
         regList.innerHTML = ""
-
     } 
 
     // enteredRegElemt.value = ''
