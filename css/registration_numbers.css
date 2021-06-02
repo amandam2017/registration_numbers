@@ -15,6 +15,10 @@ h3{
     margin: 50px 0;
 }
 
+.successfulColor{
+    color: green;
+}
+
 ul li{
     display: block;
     border: 5px solid #000;
