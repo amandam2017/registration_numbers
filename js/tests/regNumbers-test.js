@@ -28,7 +28,7 @@ describe("This instance is testing registration function....", function(){
     it('should display error messages saying *please enter your a registration number* if a user clicked add button without entering registration number' , function(){
 
         const registrations = regNum()
-        var noReg = "*please enter plate number*"
+        var noReg = "*Please enter plate number*"
 
         registrations.setReg('');
         
@@ -38,11 +38,11 @@ describe("This instance is testing registration function....", function(){
      it('should display error messages saying *Please enter a registration number correctly* if a user entered a registration incorrectly and the incorrect registration number wont be added to the list of the entered registrations' , function(){
 
         const registrations = regNum()
-        var incorrectRegFormat = ""
+        var incorrectRegFormat = "*Please enter a registration number correctly*";
 
-        registrations.setReg('ca 14578');
+        registrations.setReg('ca14578');
         
-        assert.equal(incorrectRegFormat, registrations.getReg())        
+        assert.equal(incorrectRegFormat, registrations.errors())        
     });
 
     it('should display error messages saying *registration number already exist* if a user is entering a registration more than one time' , function(){
@@ -53,7 +53,7 @@ describe("This instance is testing registration function....", function(){
         registrations.setReg('CA 12457');
         registrations.setReg('CA 12457');
         
-        assert.equal(regAlreadyExist, registrations.getReg())        
+        assert.equal(regAlreadyExist, registrations.errors())        
     });
     
 

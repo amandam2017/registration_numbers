@@ -102,6 +102,9 @@ function viewSelectedTown() {
 
  }
 
+ printRegNumElem.innerHTML = "";
+
+
 
      // and give it some content
 

@@ -1,71 +1,62 @@
 function regNum(storageReigstrations) {
+    // console.log(storageReigstrations)
     var regNumberList = storageReigstrations || [];
     var localReg = ''
 
     function setReg(plateNumber){
-        // var incorrectPatternError = 'Please enter a registration number correctly'
-        // var alreadyExixtRegError = 'Registration number already exist'
-
         if (!regNumberList.includes(plateNumber) && plateNumber.match(pattern)) {
             regNumberList.push(plateNumber)
             return localReg = plateNumber
-        }
-        // else if(regNumberList.includes(plateNumber)){
-        //     return alreadyExixtRegError
-        // }
-        // else{
-        //     return incorrectPatternError
-        // }
-        // return regNumberList  
+        } 
     }
 
     function getReg(){
         return regNumberList;
     }
 
-    var pattern = /^[CA|CK|CL]{2}\s\d{5} || [CA|CK|CL]{2}\s\d{3}\s\d{3}$/
+    var pattern = /^[CA|CK|CL]{2}\s\d{6} || [CA|CK|CL]{2}\s\d{3}\s\d{3}$/
 
-    
+    // view selected towns onlocal storage
+//  var selectedTwn = '' 
 
+//  function eachRegNum() {
+//     //  var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
+//     //  document.getElementById("selectedTownReg").innerHTML = "";
+ 
+//      // var checkedButton = document.querySelector("input[name ='town']:unchecked");
+     
+//      var checkedButton = document.querySelector("input[name ='town']:checked");
+//      if(checkedButton){
+//          selectedTwn = checkedButton.value
+//      }
+//      var selectedTwnList = [];
+ 
+//      for (var i = 0; i < storageReigstrations.length; i++) {
+//          var twnList = storageReigstrations[i]
+//          if(twnList.startsWith(selectedTwn)){
+//             selectedTwnList.push(twnList);
+//              // return selectedTwnList;
+//          }
+ 
+//      }
+ 
+//  }
 
-
-    // function eachRegNum(plateNumber,selectedTown){
-    //     // console.log(plateNumber)
-    //     // console.log(selectedTown)
-
-    //     var enteredRegNum = [];
-    //     if (pattern.test(plateNumber)){
-    //         if (selectedTown === 'Cape Town' && plateNumber.match(pattern)) {
-    //             enteredRegNum = plateNumber.startsWith('CA')
-    //         }
-    //         if (selectedTown === 'Malmesbury' && plateNumber.match(pattern)) {
-    //             enteredRegNum = plateNumber.startsWith('CK')
-    //         }
-    //         if (selectedTown === 'Stellenbosch' && plateNumber.match(pattern)) {
-    //             enteredRegNum = plateNumber.startsWith('CL')
-    //         }
-    //     }
-    //     else{
-    //         return regNumberNotMatching
-    //     }
-    // }
-
-    function errors(plateNumber, reg){
-        console.log(plateNumber)
-        console.log(reg)
+    function errors(plateNumber){
 
         var emptyFieldError = '*Please enter plate number*'
         var alreadyExixtRegError = '*Registration number already exist*'
         var incorrectPatternError = '*Please enter a registration number correctly*'
 
-        // var incorrectPatternError = 'please enter a correct registration number'
         if(!plateNumber){
-            return emptyFieldError
+            return emptyFieldError;
         } 
         else if(regNumberList.includes(plateNumber)){
-            return alreadyExixtRegError
+            return alreadyExixtRegError;
         }
-        
+        else{
+            return incorrectPatternError
+        }
     }
 
     return {
