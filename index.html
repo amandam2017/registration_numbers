@@ -18,7 +18,8 @@
                 <div class="nine columns box">
                     <h3>Registration Number:</h3>
 
-                    <span class="noMatchReg"></span>
+                    <span class="regNotEntered"></span>
+                    <span class="regAlreadyExist"></span>
                     <span class="unMatchPattern"></span>
                     <span class="successfulMessage successfulColor"></span>
 
@@ -27,8 +28,7 @@
                         <input class="enteredReg" name="enteredReg" type="text" placeholder="CA 24585" value=""
                             required />
                         <button class="button" name="add" type="button">ADD</button>
-                        <ul class="printRegNumber">   
-                        </ul>
+                        
                         <button class="buttonReset" name="removeStorage" type="button">RESET</button>
 
                         <div class="row clearfix">
@@ -50,6 +50,8 @@
                                     onclick="viewSelectedTown()">SHOW</button>
                                 <ul id="selectedTownReg" class="clearfix printEachTown"></ul>
                             </div>
+                            <ul class="printRegNumber">   
+                            </ul>
                         </div>
 
                     </form>

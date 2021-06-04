@@ -1,8 +1,10 @@
 const addButtonElem = document.querySelector('.button');
 const enteredRegElemt = document.querySelector('.enteredReg');
 const printRegNumElem = document.querySelector('.printRegNumber');
-const noMatchRegElem = document.querySelector('.noMatchReg');
+const regNotEnteredElem = document.querySelector('.regNotEntered');
 const unMatchPatternElem = document.querySelector('.unMatchPattern');
+const regAlreadyExistElem = document.querySelector('.regAlreadyExist');
+
 const buttonShowElem = document.querySelector('.buttonShow');
 const printEachTownElem = document.querySelector('.printEachTown');
 const successfulMessageElem = document.querySelector('.successfulMessage');
@@ -19,6 +21,10 @@ if(localStorage['regNumbersList']){
 //an instance for my function
 var registrations = regNum(storageList);
 
+var pattern1 = /^((CA|CK|CL)\s([0-9]){6})$/ ;
+var pattern3 = /^((CA|CK|CL)\s\d{3}\-\d{3})$/;
+var pattern2 =  /^((CA|CK|CL)\s\d{3}\s\d{3})$/;
+
 function displayRegNum(){
 
     // create a new list element regList
@@ -29,21 +35,38 @@ function displayRegNum(){
     var carReg = enteredRegElemt.value
     // regList.innerHTML = enteredRegElemt.value;
     if(carReg){
-        regList.innerHTML = registrations.setReg(carReg);
-        // add the text node to the newly created list element
-        printRegNumElem.appendChild(regList);
-        successfulMessageElem.innerHTML = 'seccessfully added a registration'
-        noMatchRegElem.innerHTML = ""
-        printEachTownElem.innerHTML = "";
+        if(pattern1.test(carReg)|| pattern2.test(carReg) || pattern3.test(carReg)){
+            if(!storageList.includes(carReg)){
+                regList.innerHTML = registrations.setReg(carReg);
+                // add the text node to the newly created list element
+                printRegNumElem.appendChild(regList);
+                successfulMessageElem.innerHTML = 'seccessfully added a registration'
+                regNotEnteredElem.innerHTML = ""
+                // printEachTownElem.innerHTML = "";
 
-    }else if(!carReg){
-        noMatchRegElem.innerHTML = registrations.errors(carReg);
+            }else{
+                regAlreadyExistElem.innerHTML = registrations.addBtnErrors(carReg);
+            }
+            
+        }
+        else{
+            unMatchPatternElem.innerHTML = registrations.addBtnErrors(carReg);
+            successfulMessageElem.innerHTML = ""
+            regList.innerHTML = ""
+        }
+        
+
+    }else{
+    // else if(!carReg){
+        regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
          regList.innerHTML = ""
+         successfulMessageElem.innerHTML = ""
     }
-    else{
-        unMatchPatternElem.innerHTML =  registrations.errors(carReg);
-        regList.innerHTML = ""
-    } 
+    // else{
+    //     unMatchPatternElem.innerHTML =  registrations.addBtnErrors(carReg);
+    //     regList.innerHTML = ""
+    //     successfulMessageElem.innerHTML = ""
+    // } 
 
     // enteredRegElemt.value = ''
 
@@ -54,7 +77,7 @@ function displayRegNum(){
 
 
     setTimeout(function(){
-        noMatchRegElem.innerHTML = ""
+        regNotEnteredElem.innerHTML = ""
         unMatchPatternElem.innerHTML = ""
 
     }, 4000)
@@ -69,43 +92,84 @@ function resetFun(){
     location.reload()
 }
 
-// view selected towns onlocal storage
- var selectedTwn = '' 
 
-function viewSelectedTown() {
-    var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
-    document.getElementById("selectedTownReg").innerHTML = "";
+    // view selected towns onlocal storage
+    var selectedTwn = '' 
 
-    // var checkedButton = document.querySelector("input[name ='town']:unchecked");
+    function viewSelectedTown() {
+        var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
+        document.getElementById("selectedTownReg").innerHTML = "";
     
-    var checkedButton = document.querySelector("input[name ='town']:checked");
-    if(checkedButton){
-        selectedTwn = checkedButton.value
-    }
-    var selectedTwnList = [];
-
-    for (var i = 0; i < townsOnStorage.length; i++) {
-        var twnList = townsOnStorage[i]
-        if(twnList.startsWith(selectedTwn)){
-           selectedTwnList.push(twnList);
-            // return selectedTwnList;
+        // var checkedButton = document.querySelector("input[name ='town']:unchecked");
+        
+        var checkedButton = document.querySelector("input[name ='town']:checked");
+        if(checkedButton){
+            selectedTwn = checkedButton.value
+        }
+        var selectedTwnList = [];
+    
+        for (var i = 0; i < townsOnStorage.length; i++) {
+            var twnList = townsOnStorage[i]
+            if(twnList.startsWith(selectedTwn)){
+               selectedTwnList.push(twnList);
+                // return selectedTwnList;
+            }
+    
         }
 
-    }
+        for (let i = 0; i < selectedTwnList.length; i++) {
+            const element = selectedTwnList[i];
+           //  console.log(selectedTwnList[i])
+          var  regLi = document.createElement('Li');
+          regLi.innerHTML = element;
+       
+            
+           //  const newContent = document.createTextNode(element);
+           printRegNumElem.appendChild(regLi);
+       
+        }
+       
+        // printRegNumElem.innerHTML = "";
+    
+    // }
 
- for (let i = 0; i < selectedTwnList.length; i++) {
-     const element = selectedTwnList[i];
-    //  console.log(selectedTwnList[i])
-   var  regLi = document.createElement('Li');
-   regLi.innerHTML = element;
+// view selected towns onlocal storage
+//  var selectedTwn = '' 
+
+// function viewSelectedTown() {
+//     var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
+//     document.getElementById("selectedTownReg").innerHTML = "";
+
+//     // var checkedButton = document.querySelector("input[name ='town']:unchecked");
+    
+//     var checkedButton = document.querySelector("input[name ='town']:checked");
+//     if(checkedButton){
+//         selectedTwn = checkedButton.value
+//     }
+//     var selectedTwnList = [];
+
+//     for (var i = 0; i < townsOnStorage.length; i++) {
+//         var twnList = townsOnStorage[i]
+//         if(twnList.startsWith(selectedTwn)){
+//            selectedTwnList.push(twnList);
+//             // return selectedTwnList;
+//         }
+
+//     }
+
+//  for (let i = 0; i < selectedTwnList.length; i++) {
+//      const element = selectedTwnList[i];
+//     //  console.log(selectedTwnList[i])
+//    var  regLi = document.createElement('Li');
+//    regLi.innerHTML = element;
 
      
-    //  const newContent = document.createTextNode(element);
-     printEachTownElem.appendChild(regLi);
+//     //  const newContent = document.createTextNode(element);
+//      printEachTownElem.appendChild(regLi);
 
- }
+//  }
 
- printRegNumElem.innerHTML = "";
+//  printRegNumElem.innerHTML = "";
 
 
 
@@ -130,5 +194,35 @@ function clearInput(){
 
 addButtonElem.addEventListener('click', displayRegNum);
 // buttonShowElem.addEventListener('click', resetFun)
-buttonShowElem.addEventListener('click', viewSelectedTown)
+// buttonShowElem.addEventListener('click', viewSelectedTown)
 
+
+
+
+// var carReg = enteredRegElemt.value
+// // regList.innerHTML = enteredRegElemt.value;
+// if(/[CA|CK|CL]{2}\s\d{3}\s\d{3}$/.test(carReg) || /^[CA|CK|CL]{2}\s\d{6}$/.test(carReg)){
+//     regList.innerHTML = registrations.setReg(carReg);
+//     console.log(carReg)
+
+//     // add the text node to the newly created list element
+//     printRegNumElem.appendChild(regList);
+//     successfulMessageElem.innerHTML = 'seccessfully added a registration'
+//     regNotAddedElem.innerHTML = ""
+//     printEachTownElem.innerHTML = "";
+
+// }
+// // else{
+// //     return unMatchPatternElem.innerHTML = registrations.addBtnErrors(carReg); 
+
+// // }
+// if(!carReg){
+//     regNotAddedElem.innerHTML = registrations.addBtnErrors(carReg);
+//      regList.innerHTML = ""
+//     successfulMessageElem.innerHTML = ''
+
+// }
+// // if(carReg){
+// //     regAlreadyExistElem.innerHTML =  registrations.addBtnErrors(carReg);
+// //     regList.innerHTML = ""
+// // }

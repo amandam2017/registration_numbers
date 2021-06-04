@@ -20,13 +20,13 @@ h3{
 }
 
 ul li{
-    display: block;
-    border: 5px solid #000;
-    /* background-color: #fff; */
+    display: inline-block;
+    border: 5px solid;
+    background-color: yellow;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 5px 10px;
-    margin: 0 15px 0 0;
+    margin: 10px 15px 0 0;
 }
 
 #registrationNumberForm .town{
