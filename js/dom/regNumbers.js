@@ -18,38 +18,6 @@ if(localStorage['regNumbersList']){
     storageList = JSON.parse(localStorage.getItem('regNumbersList'))
 }
 
-
-// window.onload = () => {
-//     // console.log('page is fully loaded');
-//     var regList = document.createElement('Li');
-//     storageList.forEach(element => {
-//         console.log(element);
-//         printRegNumElem.appendChild(regList);
-//         // console.log(regList);
-
-
-//         regList.innerHTML = element;
-//         // console.log(element);
-
-//     });
-
-//   };
-
-
-//    window.onload = () => {
-//         // console.log('page is fully loaded');
-//         var regList = document.createElement('Li');
-//         console.log(regList)
-//         for (let i = 0; i < regList.length; i++) {
-//             const element = array[i];
-//             console.log(element);
-
-//             regList.innerHTML = element;
-//             printRegNumElem.appendChild(element);
-//             regList.innerHTML = element;
-
-//         }
-//     };
 //an instance for my function
 var registrations = regNum(storageList);
 
@@ -123,9 +91,6 @@ function displayRegNum(){
         unMatchPatternElem.innerHTML = ""
 
     }, 4000)
-
-    
-
 }
 
 
