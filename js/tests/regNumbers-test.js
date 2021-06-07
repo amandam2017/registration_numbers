@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 describe("This instance is testing registration function....", function(){
     it('should be able to set and get the entered unique registration number CA 12547, CL 12345 and CK 12345' , function(){
 
@@ -60,3 +75,39 @@ describe("This instance is testing registration function....", function(){
 
 })
 
+
+
+
+// window.onload = () => {
+//     // console.log('page is fully loaded');
+//     var regList = document.createElement('Li');
+//     storageList.forEach(element => {
+//         console.log(element);
+//         printRegNumElem.appendChild(regList);
+//         console.log(regList);
+
+
+//         regList.innerHTML = element;
+
+//     });
+
+
+//   };
+
+
+   // window.onload = () => {
+    //     // console.log('page is fully loaded');
+    //     var regList = document.createElement('Li');
+    //     for (let i = 0; i < regList.length; i++) {
+    //         const element = array[i];
+    //         console.log(element);
+
+    //         regList.innerHTML = element;
+    //         printRegNumElem.appendChild(element);
+
+    //     }
+    // };
+
+
+
+    

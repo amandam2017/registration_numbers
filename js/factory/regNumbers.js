@@ -1,5 +1,5 @@
 function regNum(storageReigstrations) {
-    console.log(storageReigstrations)
+    // console.log(storageReigstrations)
     var regNumberList = storageReigstrations || [];
     var localReg = ''
 
@@ -18,9 +18,6 @@ function regNum(storageReigstrations) {
     function getReg(){
         return regNumberList;
     }
-
-    
-
 
 
     function addBtnErrors(plateNumber){

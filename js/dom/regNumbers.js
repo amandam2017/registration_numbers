@@ -10,7 +10,7 @@ const printEachTownElem = document.querySelector('.printEachTown');
 const successfulMessageElem = document.querySelector('.successfulMessage');
 
 // const errorMessageOutputElem = document.querySelector('.errorMessageOutput');
-// const buttonResetElem = document.querySelector('.buttonReset');
+const buttonResetElem = document.querySelector('.buttonReset');
 
 
 var storageList;
@@ -18,8 +18,55 @@ if(localStorage['regNumbersList']){
     storageList = JSON.parse(localStorage.getItem('regNumbersList'))
 }
 
+
+// window.onload = () => {
+//     // console.log('page is fully loaded');
+//     var regList = document.createElement('Li');
+//     storageList.forEach(element => {
+//         console.log(element);
+//         printRegNumElem.appendChild(regList);
+//         // console.log(regList);
+
+
+//         regList.innerHTML = element;
+//         // console.log(element);
+
+//     });
+
+//   };
+
+
+//    window.onload = () => {
+//         // console.log('page is fully loaded');
+//         var regList = document.createElement('Li');
+//         console.log(regList)
+//         for (let i = 0; i < regList.length; i++) {
+//             const element = array[i];
+//             console.log(element);
+
+//             regList.innerHTML = element;
+//             printRegNumElem.appendChild(element);
+//             regList.innerHTML = element;
+
+//         }
+//     };
 //an instance for my function
 var registrations = regNum(storageList);
+
+
+// console.log(registrations.getReg().length);
+var listReg = registrations.getReg();
+
+
+
+for(let i = 0; i<listReg.length; i++){
+    const element = listReg[i];
+    console.log(element)
+    var displayOnLoad = document.createElement('Li');
+    displayOnLoad.innerHTML = element;
+    printRegNumElem.appendChild(displayOnLoad);
+
+}
 
 var pattern1 = /^((CA|CK|CL)\s([0-9]){6})$/ ;
 var pattern3 = /^((CA|CK|CL)\s\d{3}\-\d{3})$/;
@@ -61,12 +108,7 @@ function displayRegNum(){
         regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
          regList.innerHTML = ""
          successfulMessageElem.innerHTML = ""
-    }
-    // else{
-    //     unMatchPatternElem.innerHTML =  registrations.addBtnErrors(carReg);
-    //     regList.innerHTML = ""
-    //     successfulMessageElem.innerHTML = ""
-    // } 
+    } 
 
     // enteredRegElemt.value = ''
 
@@ -82,13 +124,14 @@ function displayRegNum(){
 
     }, 4000)
 
+    
+
 }
 
 
 // keep local storage on page reload
-
 function resetFun(){
-    // localStorage.clear()
+    localStorage.clear()
     location.reload()
 }
 
@@ -97,6 +140,7 @@ function resetFun(){
     var selectedTwn = '' 
 
     function viewSelectedTown() {
+        printRegNumElem.innerHTML = '';
         var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
         document.getElementById("selectedTownReg").innerHTML = "";
     
@@ -128,59 +172,6 @@ function resetFun(){
            printRegNumElem.appendChild(regLi);
        
         }
-       
-        // printRegNumElem.innerHTML = "";
-    
-    // }
-
-// view selected towns onlocal storage
-//  var selectedTwn = '' 
-
-// function viewSelectedTown() {
-//     var townsOnStorage = JSON.parse(localStorage.getItem('regNumbersList'))
-//     document.getElementById("selectedTownReg").innerHTML = "";
-
-//     // var checkedButton = document.querySelector("input[name ='town']:unchecked");
-    
-//     var checkedButton = document.querySelector("input[name ='town']:checked");
-//     if(checkedButton){
-//         selectedTwn = checkedButton.value
-//     }
-//     var selectedTwnList = [];
-
-//     for (var i = 0; i < townsOnStorage.length; i++) {
-//         var twnList = townsOnStorage[i]
-//         if(twnList.startsWith(selectedTwn)){
-//            selectedTwnList.push(twnList);
-//             // return selectedTwnList;
-//         }
-
-//     }
-
-//  for (let i = 0; i < selectedTwnList.length; i++) {
-//      const element = selectedTwnList[i];
-//     //  console.log(selectedTwnList[i])
-//    var  regLi = document.createElement('Li');
-//    regLi.innerHTML = element;
-
-     
-//     //  const newContent = document.createTextNode(element);
-//      printEachTownElem.appendChild(regLi);
-
-//  }
-
-//  printRegNumElem.innerHTML = "";
-
-
-
-     // and give it some content
-
-    // add the text node to the newly created div
-    // console.log(newContent)
-
-
-    // printEachTownElem.appendChild(newContent);
-
 
     clearInput()
 
@@ -193,36 +184,8 @@ function clearInput(){
 
 
 addButtonElem.addEventListener('click', displayRegNum);
-// buttonShowElem.addEventListener('click', resetFun)
-// buttonShowElem.addEventListener('click', viewSelectedTown)
+buttonShowElem.addEventListener('click', viewSelectedTown);
+buttonResetElem.addEventListener('click', resetFun);
 
 
 
-
-// var carReg = enteredRegElemt.value
-// // regList.innerHTML = enteredRegElemt.value;
-// if(/[CA|CK|CL]{2}\s\d{3}\s\d{3}$/.test(carReg) || /^[CA|CK|CL]{2}\s\d{6}$/.test(carReg)){
-//     regList.innerHTML = registrations.setReg(carReg);
-//     console.log(carReg)
-
-//     // add the text node to the newly created list element
-//     printRegNumElem.appendChild(regList);
-//     successfulMessageElem.innerHTML = 'seccessfully added a registration'
-//     regNotAddedElem.innerHTML = ""
-//     printEachTownElem.innerHTML = "";
-
-// }
-// // else{
-// //     return unMatchPatternElem.innerHTML = registrations.addBtnErrors(carReg); 
-
-// // }
-// if(!carReg){
-//     regNotAddedElem.innerHTML = registrations.addBtnErrors(carReg);
-//      regList.innerHTML = ""
-//     successfulMessageElem.innerHTML = ''
-
-// }
-// // if(carReg){
-// //     regAlreadyExistElem.innerHTML =  registrations.addBtnErrors(carReg);
-// //     regList.innerHTML = ""
-// // }
