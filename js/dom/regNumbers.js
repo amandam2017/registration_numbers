@@ -98,6 +98,7 @@ function viewSelectedTown() {
 			// return selectedTwnList;
 		}
 	}
+
 	for(let i = 0; i < selectedTwnList.length; i++) {
 		const element = selectedTwnList[i];
 		//  console.log(selectedTwnList[i])
@@ -109,17 +110,23 @@ function viewSelectedTown() {
 	clearInput();
     // checkedButton.value = false;
 }
+var listReg = registrations.getReg();
 
 function showAll(){
-	var listReg = registrations.getReg();
+
+	while (printRegNumElem.firstChild) {
+        printRegNumElem.removeChild(printRegNumElem.firstChild);
+    }
+
 	for(let i = 0; i < listReg.length; i++) {
 	const element = listReg[i];
 	console.log(element)
 	var displayOnLoad = document.createElement('Li');
 	displayOnLoad.innerHTML = element;
 	printRegNumElem.appendChild(displayOnLoad);
-
-	window.onload = '';
+	// printRegNumElem.
+	
+	// window.onload =
 
 }
 }
