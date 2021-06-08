@@ -8,10 +8,25 @@ describe("This instance is testing registration function....", function() {
 		assert.deepEqual(['CA 123-456', 'CL 123456', 'CK 123 452'], registrations.getReg());
 	});
 
-	it('should filter the registrations according to a selected town', function() {
+	it('should be able to add a registration from Cape Town successfully', function() {
+		const registrations = regNum();
+		registrations.setReg('CA 254782');
+		assert.equal('CA 254782', registrations.getReg());
+	});
+	it('should be able to add a registration from Malmesbury successfully', function() {
+		const registrations = regNum();
+		registrations.setReg('CK 254782');
+		assert.equal('CK 254782', registrations.getReg());
+	});
+	it('should be able to add a registration from Stellenbosch successfully', function() {
 		const registrations = regNum();
 		registrations.setReg('CL 254782');
 		assert.equal('CL 254782', registrations.getReg());
+	});
+	it('should be able to add a registration number of a lower case and display it as Uppercase', function() {
+		const registrations = regNum();
+		registrations.setReg('ca 123456');
+		assert.equal('CA 123456', registrations.getReg());
 	});
 
     // it('should filter the registrations according to a selected town', function() {
@@ -22,7 +37,7 @@ describe("This instance is testing registration function....", function() {
 
 	it('should display error messages saying *Please enter a registration number correctly* if a user entered a registration incorrectly and the incorrect registration number wont be added to the list of the entered registrations', function() {
 		const registrations = regNum()
-		var incorrectRegFormat = "*Please enter a registration number correctly*";
+		var incorrectRegFormat = "*Please enter this format for reg [CL 123452] OR [CK 123-321] OR [CL 012 658]*";
 		registrations.setReg('ca14578');
 		assert.equal(incorrectRegFormat, registrations.addBtnErrors('ca14578'));
 	});
@@ -35,10 +50,10 @@ describe("This instance is testing registration function....", function() {
 		assert.equal(regAlreadyExist, registrations.addBtnErrors('CA 124-570'));
 	});
 
-	it('should not display a registration number that have less than 6 numbers and return a message saying with an example of the correct format', function() {
+	it('should return false if a user enters a registration number that takes less than 6 numbers and return a message saying with an example of the correct format', function() {
 		const registrations = regNum();
 		registrations.setReg('CA 25478');
-		assert.equal('', registrations.getReg());
+		assert.equal(false, registrations.getReg());
 	});
     
 	it('should display error messages saying *please enter your a registration number* if a user clicked add button without entering registration number', function() {
