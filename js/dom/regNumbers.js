@@ -46,19 +46,19 @@ function displayRegNum() {
 			} else {
 				regAlreadyExistElem.innerHTML = registrations.addBtnErrors(carReg);
 				successfulMessageElem.innerHTML = ""
-				unMatchPatternElem = ""
-				regList.innerHTML = ""
-				// regNotEnteredElem = ""
+				// unMatchPatternElem = ""
+				// regList.innerHTML = ""
+				regNotEnteredElem = ""
 			}
 		} else {
 			unMatchPatternElem.innerHTML = registrations.addBtnErrors(carReg);
-			successfulMessageElem.innerHTML = ""
-			regList.innerHTML = ""
-			regNotEnteredElem = ""
+			// successfulMessageElem.innerHTML = ""
+			// regList.innerHTML = ""
+			// regNotEnteredElem = ""
 		}
 	} else {
 		regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
-		regList.innerHTML = ""
+		// regList.innerHTML = ""
 		successfulMessageElem.innerHTML = ""
 		regAlreadyExistElem = ""
 	}
@@ -119,7 +119,7 @@ function showAll(){
 	displayOnLoad.innerHTML = element;
 	printRegNumElem.appendChild(displayOnLoad);
 
-	// window.onload = showAll();
+	window.onload = '';
 
 }
 }
