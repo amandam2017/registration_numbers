@@ -37,9 +37,18 @@ function regNum(storageReigstrations) {
 			return emptyFieldError;
 		}
 	}
+
+	function listErrors(storageReigstrations){
+		if(!storageReigstrations){
+			return 'there is no registration'
+		}
+
+	}
+
 	return {
 		setReg,
 		getReg,
-		addBtnErrors
+		addBtnErrors,
+		listErrors
 	}
 }

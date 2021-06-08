@@ -10,6 +10,7 @@ var unMatchPatternElem = document.querySelector('.unMatchPattern');
 var regAlreadyExistElem = document.querySelector('.regAlreadyExist');
 
 var successfulMessageElem = document.querySelector('.successfulMessage');
+var storageResertElem = document.querySelector('.storageResert')
 // const errorMessageOutputElem = document.querySelector('.errorMessageOutput');
 var buttonResetElem = document.querySelector('.buttonReset');
 var storageList = []
@@ -35,23 +36,25 @@ function displayRegNum() {
 		// regList.innerHTML = enteredRegElemt.value;
 	if(carReg) {
 		if(pattern1.test(carReg) || pattern2.test(carReg) || pattern3.test(carReg)) {
-			console.log(storageList + "ertyuiop")
+			console.log(storageList + "ertyuiop");
 			if(!storageList.includes(carReg)) {
 				regList.innerHTML = registrations.setReg(carReg);
 				// add the text node to the newly created list element
 				printRegNumElem.appendChild(regList);
 				successfulMessageElem.innerHTML = 'seccessfully added a registration'
 				regNotEnteredElem.innerHTML = ""
+				// regAlreadyExistElem.innerHTML = ""
+
 					// printEachTownElem.innerHTML = "";
 			} else {
-				regAlreadyExistElem.innerHTML = registrations.addBtnErrors(carReg);
-				successfulMessageElem.innerHTML = ""
+				regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
+				// successfulMessageElem.innerHTML = ""
 				// unMatchPatternElem = ""
 				// regList.innerHTML = ""
-				regNotEnteredElem = ""
+				// regNotEnteredElem = ""
 			}
 		} else {
-			unMatchPatternElem.innerHTML = registrations.addBtnErrors(carReg);
+			regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
 			// successfulMessageElem.innerHTML = ""
 			// regList.innerHTML = ""
 			// regNotEnteredElem = ""
@@ -60,7 +63,7 @@ function displayRegNum() {
 		regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
 		// regList.innerHTML = ""
 		successfulMessageElem.innerHTML = ""
-		regAlreadyExistElem = ""
+		// regAlreadyExistElem = ""
 	}
 	enteredRegElemt.value = ''
 
@@ -76,7 +79,8 @@ function displayRegNum() {
 // keep local storage on page reload
 function resetFun() {
 	localStorage.clear()
-	location.reload()
+	// location.reload()
+	storageResertElem.innerHTML = 'storage cleared'
 }
 // view selected towns onlocal storage
 var selectedTwn = ''
@@ -93,10 +97,16 @@ function viewSelectedTown() {
 	var selectedTwnList = [];
 	for(var i = 0; i < townsOnStorage.length; i++) {
 		var twnList = townsOnStorage[i]
-		if(twnList.startsWith(selectedTwn)) {
-			selectedTwnList.push(twnList);
-			// return selectedTwnList;
+		if(twnList){
+			if(twnList.startsWith(selectedTwn)) {
+				selectedTwnList.push(twnList);
+				// return selectedTwnList;
+			}
 		}
+		// else{
+		// 	listErrors
+		// }
+		
 	}
 
 	for(let i = 0; i < selectedTwnList.length; i++) {
