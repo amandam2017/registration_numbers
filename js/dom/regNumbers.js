@@ -1,31 +1,27 @@
-const addButtonElem = document.querySelector('.button');
-const enteredRegElemt = document.querySelector('.enteredReg');
-const printRegNumElem = document.querySelector('.printRegNumber');
-const regNotEnteredElem = document.querySelector('.regNotEntered');
-const unMatchPatternElem = document.querySelector('.unMatchPattern');
-const regAlreadyExistElem = document.querySelector('.regAlreadyExist');
-const buttonShowElem = document.querySelector('.buttonShow');
-const printEachTownElem = document.querySelector('.printEachTown');
-const successfulMessageElem = document.querySelector('.successfulMessage');
+var addButtonElem = document.querySelector('.button');
+var buttonShowAllElem = document.querySelector('.buttonShowAll');
+var buttonShowElem = document.querySelector('.buttonShow');
+
+var printEachTownElem = document.querySelector('.printEachTown');
+var enteredRegElemt = document.querySelector('.enteredReg');
+var printRegNumElem = document.querySelector('.printRegNumber');
+var regNotEnteredElem = document.querySelector('.regNotEntered');
+var unMatchPatternElem = document.querySelector('.unMatchPattern');
+var regAlreadyExistElem = document.querySelector('.regAlreadyExist');
+
+var successfulMessageElem = document.querySelector('.successfulMessage');
 // const errorMessageOutputElem = document.querySelector('.errorMessageOutput');
-const buttonResetElem = document.querySelector('.buttonReset');
-var storageList;
+var buttonResetElem = document.querySelector('.buttonReset');
+var storageList = []
 if(localStorage['regNumbersList']) {
-	storageList = JSON.parse(localStorage.getItem('regNumbersList'))
+	storageList = JSON.parse(localStorage.getItem('regNumbersList'));
 }
 //an instance for my function
 var registrations = regNum(storageList);
-var listReg = registrations.getReg();
-for(let i = 0; i < listReg.length; i++) {
-	const element = listReg[i];
-	console.log(element)
-	var displayOnLoad = document.createElement('Li');
-	displayOnLoad.innerHTML = element;
-	printRegNumElem.appendChild(displayOnLoad);
-}
-var pattern1 = /^((CA|CK|CL)\s([0-9]){6})$/;
-var pattern3 = /^((CA|CK|CL)\s\d{3}\-\d{3})$/;
-var pattern2 = /^((CA|CK|CL)\s\d{3}\s\d{3})$/;
+
+var pattern1 = /^((CA|CK|CL)\s([0-9]){6})$/i;
+var pattern3 = /^((CA|CK|CL)\s\d{3}\-\d{3})$/i;
+var pattern2 = /^((CA|CK|CL)\s\d{3}\s\d{3})$/i;
 
 function displayRegNum() {
 	// create a new list element regList
@@ -33,9 +29,13 @@ function displayRegNum() {
 	// console.log(regList)
 	//and give it some content
 	var carReg = enteredRegElemt.value
+    if (carReg != '') {
+        carReg = carReg.toUpperCase();
+    }
 		// regList.innerHTML = enteredRegElemt.value;
 	if(carReg) {
 		if(pattern1.test(carReg) || pattern2.test(carReg) || pattern3.test(carReg)) {
+			console.log(storageList + "ertyuiop")
 			if(!storageList.includes(carReg)) {
 				regList.innerHTML = registrations.setReg(carReg);
 				// add the text node to the newly created list element
@@ -45,17 +45,22 @@ function displayRegNum() {
 					// printEachTownElem.innerHTML = "";
 			} else {
 				regAlreadyExistElem.innerHTML = registrations.addBtnErrors(carReg);
+				successfulMessageElem.innerHTML = ""
+				unMatchPatternElem = ""
+				regList.innerHTML = ""
+				// regNotEnteredElem = ""
 			}
 		} else {
 			unMatchPatternElem.innerHTML = registrations.addBtnErrors(carReg);
 			successfulMessageElem.innerHTML = ""
 			regList.innerHTML = ""
+			regNotEnteredElem = ""
 		}
 	} else {
-		// else if(!carReg){
 		regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
 		regList.innerHTML = ""
 		successfulMessageElem.innerHTML = ""
+		regAlreadyExistElem = ""
 	}
 	enteredRegElemt.value = ''
 
@@ -105,10 +110,27 @@ function viewSelectedTown() {
     // checkedButton.value = false;
 }
 
+function showAll(){
+	var listReg = registrations.getReg();
+	for(let i = 0; i < listReg.length; i++) {
+	const element = listReg[i];
+	console.log(element)
+	var displayOnLoad = document.createElement('Li');
+	displayOnLoad.innerHTML = element;
+	printRegNumElem.appendChild(displayOnLoad);
+
+	// window.onload = showAll();
+
+}
+}
+
 function clearInput() {
 	document.getElementById('registrationNumberForm').reset();
 }
 
+window.onload = showAll();
+
 addButtonElem.addEventListener('click', displayRegNum);
 buttonShowElem.addEventListener('click', viewSelectedTown);
+buttonShowAllElem.addEventListener('click', showAll);
 buttonResetElem.addEventListener('click', resetFun);

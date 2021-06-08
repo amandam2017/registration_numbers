@@ -35,7 +35,7 @@ describe("This instance is testing registration function....", function() {
 		assert.equal(regAlreadyExist, registrations.addBtnErrors('CA 124-570'));
 	});
 
-	it('should not display a registration number that does not match the pattern', function() {
+	it('should not display a registration number that have less than 6 numbers and return a message saying with an example of the correct format', function() {
 		const registrations = regNum();
 		registrations.setReg('CA 25478');
 		assert.equal('', registrations.getReg());
