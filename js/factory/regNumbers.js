@@ -7,6 +7,8 @@ function regNum(storageReigstrations) {
 	var pattern2 = /^((CA|CK|CL)\s\d{3}\s\d{3})$/;
 
 	function setReg(plateNumber) {
+        plateNumber = plateNumber.toUpperCase();
+
 		if(!regNumberList.includes(plateNumber) && pattern1.test(plateNumber) || pattern2.test(plateNumber) || pattern3.test(plateNumber)) {
 			// if (!regNumberList.includes(plateNumber) && plateNumber.match(pattern)) {
 			regNumberList.push(plateNumber)

@@ -14,6 +14,12 @@ describe("This instance is testing registration function....", function() {
 		assert.equal('CL 254782', registrations.getReg());
 	});
 
+    // it('should filter the registrations according to a selected town', function() {
+	// 	const registrations = regNum();
+	// 	registrations.setReg('CL 254782');
+	// 	assert.equal('CL 254782', registrations.getReg());
+	// });
+
 	it('should display error messages saying *Please enter a registration number correctly* if a user entered a registration incorrectly and the incorrect registration number wont be added to the list of the entered registrations', function() {
 		const registrations = regNum()
 		var incorrectRegFormat = "*Please enter a registration number correctly*";

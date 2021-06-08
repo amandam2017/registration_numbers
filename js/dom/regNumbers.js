@@ -57,11 +57,12 @@ function displayRegNum() {
 		regList.innerHTML = ""
 		successfulMessageElem.innerHTML = ""
 	}
-	// enteredRegElemt.value = ''
+	enteredRegElemt.value = ''
+
 	let key = registrations.getReg();
 	localStorage.setItem('regNumbersList', JSON.stringify(key));
 	// console.log(key);
-	clearInput()
+	clearInput();
 	setTimeout(function() {
 		regNotEnteredElem.innerHTML = ""
 		unMatchPatternElem.innerHTML = ""
@@ -100,12 +101,14 @@ function viewSelectedTown() {
 		//  const newContent = document.createTextNode(element);
 		printRegNumElem.appendChild(regLi);
 	}
-	clearInput()
+	clearInput();
+    // checkedButton.value = false;
 }
 
 function clearInput() {
 	document.getElementById('registrationNumberForm').reset();
 }
+
 addButtonElem.addEventListener('click', displayRegNum);
 buttonShowElem.addEventListener('click', viewSelectedTown);
 buttonResetElem.addEventListener('click', resetFun);
