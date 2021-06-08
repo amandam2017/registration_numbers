@@ -22,10 +22,7 @@ if(localStorage['regNumbersList']){
 var registrations = regNum(storageList);
 
 
-// console.log(registrations.getReg().length);
 var listReg = registrations.getReg();
-
-
 
 for(let i = 0; i<listReg.length; i++){
     const element = listReg[i];
@@ -80,8 +77,8 @@ function displayRegNum(){
 
     // enteredRegElemt.value = ''
 
-    let key = registrations.getReg()
-    localStorage.setItem('regNumbersList', JSON.stringify(key))
+    let key = registrations.getReg();
+    localStorage.setItem('regNumbersList', JSON.stringify(key));
     // console.log(key);
     clearInput()
 

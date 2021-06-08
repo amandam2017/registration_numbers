@@ -7,7 +7,9 @@ describe("This instance is testing registration function....", function(){
         registrations.setReg('CL 123456');     
         registrations.setReg('CK 123 452');    
 
-        assert.deepEqual([{registrations:'CA 123-456'},{registrations:'CL 123456'},{registrations:'CK 123 452'}], registrations.getReg());     
+        // console.log(registrations.getReg());
+
+        assert.deepEqual(['CA 123-456','CL 123456','CK 123 452'], registrations.getReg());     
         
     });
 
