@@ -24,7 +24,7 @@ function regNum(storageReigstrations) {
 	function addBtnErrors(plateNumber) {
 		var emptyFieldError = '*Please enter plate number*'
 		var alreadyExistRegError = '*Registration number already exist*'
-		var incorrectPatternError = '*Please enter this format for reg [CL 123452] OR [CK 123-321] OR [CL 012 658]*'
+		var incorrectPatternError = '*Please enter reg from these towns in this format [CL 123452] OR [CK 123-321] OR [CL 012 658]*'
 		if(plateNumber) {
 			if(pattern1.test(plateNumber) || pattern2.test(plateNumber) || pattern3.test(plateNumber)) {
 				if(regNumberList.includes(plateNumber)) {

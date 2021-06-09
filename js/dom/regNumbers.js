@@ -1,4 +1,4 @@
-var addButtonElem = document.querySelector('.button');
+var addButtonElem = document.querySelector('.addBtn');
 var buttonShowAllElem = document.querySelector('.buttonShowAll');
 var buttonShowElem = document.querySelector('.buttonShow');
 
@@ -80,7 +80,7 @@ function displayRegNum() {
 function resetFun() {
 	localStorage.clear()
 	// location.reload()
-	storageResertElem.innerHTML = 'storage cleared'
+	successfulMessageElem.innerHTML = 'Storage successfully cleared'
 }
 // view selected towns onlocal storage
 var selectedTwn = ''

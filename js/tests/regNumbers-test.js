@@ -37,7 +37,7 @@ describe("This instance is testing registration function....", function() {
 
 	it('should display error messages saying *Please enter a registration number correctly* if a user entered a registration incorrectly and the incorrect registration number wont be added to the list of the entered registrations', function() {
 		const registrations = regNum()
-		var incorrectRegFormat = "*Please enter this format for reg [CL 123452] OR [CK 123-321] OR [CL 012 658]*";
+		var incorrectRegFormat = "*Please enter reg from these towns in this format [CL 123452] OR [CK 123-321] OR [CL 012 658]*";
 		registrations.setReg('ca14578');
 		assert.equal(incorrectRegFormat, registrations.addBtnErrors('ca14578'));
 	});
