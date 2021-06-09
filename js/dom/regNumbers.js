@@ -48,14 +48,14 @@ function displayRegNum() {
 					// printEachTownElem.innerHTML = "";
 			} else {
 				regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
-				// successfulMessageElem.innerHTML = ""
+				successfulMessageElem.innerHTML = ""
 				// unMatchPatternElem = ""
 				// regList.innerHTML = ""
 				// regNotEnteredElem = ""
 			}
 		} else {
 			regNotEnteredElem.innerHTML = registrations.addBtnErrors(carReg);
-			// successfulMessageElem.innerHTML = ""
+			successfulMessageElem.innerHTML = ""
 			// regList.innerHTML = ""
 			// regNotEnteredElem = ""
 		}
@@ -74,12 +74,13 @@ function displayRegNum() {
 	setTimeout(function() {
 		regNotEnteredElem.innerHTML = ""
 		unMatchPatternElem.innerHTML = ""
+		successfulMessageElem.innerHTML = ""
 	}, 4000)
 }
 // keep local storage on page reload
 function resetFun() {
 	localStorage.clear()
-	// location.reload()
+	location.reload()
 	successfulMessageElem.innerHTML = 'Storage successfully cleared'
 }
 // view selected towns onlocal storage
